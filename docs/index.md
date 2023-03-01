@@ -8,21 +8,21 @@ Assignment07
 
  
 
-#Assignment 7 
+# Assignment 7 
 
-##Introduction 
+## Introduction 
 
 This document outlines the steps I took to learn about how Python deals with Binary Files and Exceptions. 
 
  
 
-##Previewing the Class Material 
+## Previewing the Class Material 
 
 I started by watching the Mod07 YouTube video, reading the corresponding chapter from the assigned book and watching the Panopto recording for the week. I go through the material in one shot to get an overview of the topics covered in the assignment for the week. After Getting an idea of the topics I download the class materials and prepared to dive in. 
 
  
 
-##Diving In 
+## Diving In 
 
 I wrote in my planner a checklist of the listings in the Panopto recording with the intention of writing them with binary files instead of text files. The first two listings were simple to write with binary instead of text files. Attempting the third listing I ran into a problem because the function to read objects from a binary file only reads one line at a time and the third listing required more than one line to be read from a file. I felt this a good place to start researching to see what solutions could be found on the internet for my problem with listing 3. 
 ![Listing3-AppendB](https://user-images.githubusercontent.com/125520296/222291417-5c5b3da7-aa33-4a8f-bcd2-5e1ad7306f6a.png)
@@ -30,7 +30,7 @@ Figure 1. My first attempt to read multiple lines of a binary file (line 30) fee
 
  
 
-##Researching 
+## Researching 
 
 I began searching the internet for terms that I was using in my code. I was looking for keywords and phrases such as “pickling”, “reading a binary file in python”, “pickle.load()” and “for-loop” in various combinations for hours. I found material that was at best tangential to what I needed, and I was burning through time and becoming stressed. 
 
@@ -43,7 +43,7 @@ The problem I was having with Listing 3 is outlined in this week's lecture video
 
  
 
-##The problem 
+## The problem 
 
 I want to be able to read a binary file of unknown length and print it to the console. I did not know the syntax to do this with a Python for-loop and the “in” keyword and was stuck in a painful trial and error cycle wasting tons of time. 
 
@@ -53,7 +53,7 @@ Eventually I stopped trying to jam python’s pickle.load() function into for-lo
 
  
 
-##Dealing With the Error 
+## Dealing With the Error 
 
 I had not yet made it to typing the listings from the Panopto recording that detailed exception handling and I thought I could work through the problem without the “try & except” structure. 
 
@@ -65,7 +65,7 @@ Finally, I had actualized my idea and I began writing the remaining listings lik
 
  
 
-##Handling the Exception 
+## Handling the Exception 
 
 After working through all the listings, I realized that I could rewrite the code from figure 4 to show the use of the “try & except” structure. 
 ![try except](https://user-images.githubusercontent.com/125520296/222292055-de8dbcd7-310e-453d-b798-6eaf9ede25e4.png)
@@ -73,7 +73,7 @@ Figure 5. Listing 13-B, a structure with the same net result as in figure 4 usin
 
  
 
-##Conclusion 
+## Conclusion 
 
 I am trying something new, in the earlier 6 assignments I have avoided the first-person pronoun. The first three example assignments used “I” and the fourth did not. I was aiming at imitating “Writing example 4.pdf” because it seemed the most professional to me, but it seemed to be costing me points (precious points!). The point may not be the points but the lesson I learned. 
 
@@ -85,4 +85,49 @@ Figure 6. Assignment 7 in PyCharm.
 ![dat file in notepad](https://user-images.githubusercontent.com/125520296/222292155-c70b9def-785c-40f3-8dfe-bf17a8513a52.png)
 Figure 7. Binary file used in assignment 7. 
 ![A07 in cmd](https://user-images.githubusercontent.com/125520296/222292215-b3614623-db0f-4190-9b48-207aaf067581.png)
+
 Figure 8. Assignment 7 in the command window. 
+
+```
+# ---------------------------------------------------------------------------- #
+# Title: Assignment 07
+# Description: Working with binary files and pickle module,
+#              When the program starts, dump some lines in a .dat file,
+#              gather more data, read the whole file,
+#              catch the exception thrown when there is no more data to read
+# ChangeLog (Who,When,What):
+# KClarke,2.26.2023,created file to complete assignment 07
+# KClarke,2.16.2023,Modified code to complete assignment 07
+# ---------------------------------------------------------------------------- #
+
+import pickle
+
+testData = "test line 1\n" \
+           "line 2\n" \
+           "line 3"
+testFileName = "Data.dat"
+
+objFile = open(testFileName, "wb")
+pickle.dump(testData, objFile)
+objFile.close()
+
+# more data -------------------------
+moreData = "line 4"
+objFile = open(testFileName, "ab")
+pickle.dump(moreData, objFile)
+objFile.close()
+# -----------------------------------
+
+objFile = open(testFileName, "rb")
+while True:
+    try:
+        fileData =  pickle.load(objFile)
+    except EOFError as e:
+        fileData = "end of file"
+    if fileData !="end of file":
+        print(fileData)
+    else:
+        objFile.close()
+        break
+```
+Figure 9. The code for reading a binary file of any size.
