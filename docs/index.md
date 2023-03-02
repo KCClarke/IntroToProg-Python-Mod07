@@ -140,3 +140,5 @@ while True:
         break
 ```
 Figure 9. The code for reading a binary file of any size.
+
+                                                        🦇
