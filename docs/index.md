@@ -1,3 +1,7 @@
+remote_theme: pages-themes/hacker@v0.2.0
+plugins:
+- jekyll-remote-theme 
+
 Kasey Clarke 
 
 2/28/2023 
