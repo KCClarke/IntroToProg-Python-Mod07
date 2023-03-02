@@ -65,7 +65,7 @@ I could append a flag variable to the end of my file and have the while-loop and
 
 Figure 4. Listing9-B, a structure to use the pickle module to read any number of lines from a binary file. Substitute lines 16 to 21 with a loop that gathers data from a user and the flag is still the last thing in the file (lines 23 to 26). The user would not see the flag because it is never printed. 
 
-Finally, I had actualized my idea and I began writing the remaining listings like a bat out of heck. 
+Finally, I had actualized my idea and I began writing the remaining listings like a bat out of heck. 🦇
 
  
 
@@ -140,5 +140,3 @@ while True:
         break
 ```
 Figure 9. The code for reading a binary file of any size.
-
-                                                        🦇
